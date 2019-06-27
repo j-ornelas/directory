@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const CardContainer = styled.div`
   justify-content: center;
   align-items: center;
-  minWidth: 250;
-  minHeight: 400;
+  minWidth: 250px;
+  minHeight: 400px;
   padding: 30px;
   margin: auto;
 `;
@@ -14,7 +14,12 @@ export const EmployeeName = styled.div`
 `;
 
 export const SmallImage = styled.img`
-  height: 200;
-  width: 200;
+  height: 150px;
+  width: 150px;
   border-radius: 50%;
+  transition: all 500ms;
+  ${CardContainer}:hover & {
+    cursor: pointer;
+    opacity: 0.5;
+  }
 `;

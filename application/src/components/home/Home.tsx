@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { StoreState } from '../../redux/reducers';
 import { setCurrentEmployee, Employee } from '../../redux/actions';
-import { EmployeeCard, CurrentEmployee } from '../'
+import { EmployeeCard, EmployeeModal } from '../'
 import { CardsContainer } from './HomeStyles';
 
 interface HomeProps {
@@ -15,7 +15,9 @@ class HomeComponent extends React.Component<HomeProps> {
   render() {
     return (
       <CardsContainer>
-        <CurrentEmployee currentEmployee={this.props.currentEmployee} />
+        {false && (
+          <EmployeeModal currentEmployee={this.props.currentEmployee} />
+        )}
         {this.props.allEmployees.map((employee:Employee) => {
           return (
             <EmployeeCard key={JSON.stringify(employee)} employee={employee}/>
