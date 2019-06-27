@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { setCurrentEmployee, toggleModal, Employee } from '../../redux/actions';
@@ -7,6 +7,8 @@ import {
   ExtendedCard,
   LargerImage,
   InfoText,
+  DeleteButton,
+  DeleteButtonContainer,
 } from './employeeModalStyles';
 import { formatName } from '../../utils';
 
@@ -16,6 +18,9 @@ interface CurrentEmployeeProps {
   toggleModal:Function;
 }
 class EmployeeModalComponent extends React.Component<CurrentEmployeeProps> {
+  handleDelete(e:MouseEvent):void {
+    e.stopPropagation();
+  }
   render() {
     const { currentEmployee, toggleModal } = this.props;
     const { first, last } = currentEmployee.name;
@@ -26,6 +31,11 @@ class EmployeeModalComponent extends React.Component<CurrentEmployeeProps> {
           <InfoText>{`${formatName(first)} ${formatName(last)}`}</InfoText>
           <InfoText>{currentEmployee.email}</InfoText>
           <InfoText>{currentEmployee.cell}</InfoText>
+          <DeleteButtonContainer>
+            <DeleteButton onClick={(e) => this.handleDelete(e)}>
+              Delete
+            </DeleteButton>
+          </DeleteButtonContainer>
         </ExtendedCard>
       </EmployeeModalContainer>
     )

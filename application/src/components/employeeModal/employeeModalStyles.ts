@@ -19,6 +19,23 @@ export const ExtendedCard = styled.div`
   padding: 30px;
 `;
 
+export const DeleteButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  width: 100%;
+  height: 10%;
+`;
+
+export const DeleteButton = styled.button`
+  width: 50%;
+  height: 10%;
+  background-color: red;
+  border-radius: 2px;
+  color: white;
+`;
+
 export const InfoText = styled.div`
   text-align: center;
 `;
