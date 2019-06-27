@@ -18,7 +18,7 @@ const EmployeeSchema = new Schema({
 export const EmployeeModel:Model<Document> = model('Employee', EmployeeSchema);
 
 /* ******** SEED DB ******** */
-export const seedDB = async (shouldForce:boolean|undefined) => {
+export const seedDB = async (shouldForce?:boolean) => {
   try {
     const employees = await EmployeeModel.find();
     if (!employees.length || shouldForce) await EmployeeModel.insertMany(seed.results);
