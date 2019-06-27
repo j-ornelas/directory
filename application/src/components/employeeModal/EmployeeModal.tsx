@@ -42,11 +42,12 @@ class EmployeeModalComponent extends React.Component<CurrentEmployeeProps> {
       })
     })
       .then((res:Response) => res.json())
-      .then((info:RemoveEmployeeResponse) => {
-        if (info.err) alert(info.err);
-        if (info.success && info.employees) {
+      .then((serverResponse:RemoveEmployeeResponse) => {
+        if (serverResponse.err) alert(serverResponse.err);
+        const updatedEmployees = serverResponse.employees;
+        if (serverResponse.success && updatedEmployees) {
           this.setLoading(false);
-          this.props.setAllEmployees(info.employees);
+          this.props.setAllEmployees(updatedEmployees);
           this.props.toggleModal();
         } else {
           this.setLoading(false);
