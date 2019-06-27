@@ -3,31 +3,33 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { StoreState } from '../../redux/reducers';
 import { setCurrentEmployee, Employee } from '../../redux/actions';
+import { EmployeeCard, CurrentEmployee } from '../'
+import { CardsContainer } from './HomeStyles';
 
 interface HomeProps {
   setCurrentEmployee:Function;
   allEmployees:Employee[];
+  currentEmployee: Employee;
 }
 class HomeComponent extends React.Component<HomeProps> {
   render() {
     return (
-      this.props.allEmployees.map((employee:Employee, index:number) => {
-        return (
-          <li
-            onClick={() => this.props.setCurrentEmployee(employee)}
-            key={employee.cell + index}
-          >
-            {employee.cell}
-          </li>
-        )
-      })
+      <CardsContainer>
+        <CurrentEmployee currentEmployee={this.props.currentEmployee} />
+        {this.props.allEmployees.map((employee:Employee) => {
+          return (
+            <EmployeeCard key={JSON.stringify(employee)} employee={employee}/>
+          )
+        })}
+    </CardsContainer>
     )
   }
 }
 
 
-const mapStateToProps = ({ allEmployees }:StoreState) => ({
-  allEmployees
+const mapStateToProps = ({ allEmployees, currentEmployee }:StoreState) => ({
+  allEmployees,
+  currentEmployee
 })
 const mapActionsToProps = (dispatch:Dispatch) => ({
   setCurrentEmployee(employee:Employee) {
