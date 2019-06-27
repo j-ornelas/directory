@@ -11,7 +11,7 @@ var database_1 = require("./database/database");
 database_1.db.on('error', console.error.bind(console, 'connection error:'));
 database_1.db.once('open', function () { return console.log('db is connected....'); });
 /* ******** SERVER CONFIG ******** */
-var PORT = 3033;
+var PORT = 3033; // not using process.env for ease of running the app.
 var app = express_1.default();
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(routes_1.router);
