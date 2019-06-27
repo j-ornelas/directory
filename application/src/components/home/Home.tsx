@@ -15,7 +15,7 @@ class HomeComponent extends React.Component<HomeProps> {
   render() {
     return (
       <CardsContainer>
-        {false && (
+        {true && (
           <EmployeeModal currentEmployee={this.props.currentEmployee} />
         )}
         {this.props.allEmployees.map((employee:Employee) => {
