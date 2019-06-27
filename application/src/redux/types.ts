@@ -1,11 +1,16 @@
 import {
   SetEmployeeInterface,
-  SetAllEmployeesInterFace
+  SetAllEmployeesInterFace,
+  ToggleModalInterface,
 } from './actions';
 
 export enum ActionTypes {
   SET_CURRENT_EMPLOYEE,
   SET_ALL_EMPLOYEES,
+  TOGGLE_MODAL,
 }
 
-export type Action = SetEmployeeInterface|SetAllEmployeesInterFace;
+export type Action =
+SetEmployeeInterface|
+SetAllEmployeesInterFace|
+ToggleModalInterface;
