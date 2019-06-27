@@ -16,7 +16,7 @@ const DEFAULT_EMPLOYEE_STATE = {
   cell: '',
   name: { first:'', last: ''},
   picture: { medium: '', large: ''},
-
+  _id: '',
 }
 export const currentEmployee = (state:Employee = DEFAULT_EMPLOYEE_STATE, action:Action) => {
   switch(action.type) {

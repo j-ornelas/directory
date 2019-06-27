@@ -12,7 +12,7 @@ class AppComponent extends React.Component<AppProps> {
   }
 
   componentDidMount() {
-    fetch('/employees')
+    fetch('/employees/get')
       .then(res => res.json())
       .then(info => {
         this.props.setAllEmployees(info.employees);

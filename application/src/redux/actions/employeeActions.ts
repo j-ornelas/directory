@@ -10,7 +10,8 @@ export interface Employee {
   picture: {
     large:string;
     medium:string;
-  }
+  };
+  _id: string;
 }
 // Set all employees
 export interface SetAllEmployeesInterFace {
