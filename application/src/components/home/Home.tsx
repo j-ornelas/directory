@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { StoreState } from '../../redux/reducers';
-import { setCurrentEmployee, Employee } from '../../redux/actions';
+import { setCurrentEmployee, increasePaginator, decreasePaginator, Employee } from '../../redux/actions';
 import { EmployeeCard, EmployeeModal, Paginator } from '../'
 import { CardsContainer, TitleText, HomeContainer } from './HomeStyles';
 
@@ -12,25 +12,23 @@ interface HomeProps {
   allEmployees:Employee[];
   currentEmployee:Employee;
   isModalOpen:boolean;
+  increasePaginator:Function;
+  decreasePaginator:Function;
+  paginatorStartIndex:number;
 }
 class HomeComponent extends React.Component<HomeProps> {
-  state = {
-    startIndex: 0,
-  }
   increaseIndex(numPerPage:number):void {
-    this.setState({ startIndex: this.state.startIndex + numPerPage });
+    this.props.increasePaginator(numPerPage);
   }
   decreaseIndex(numPerPage:number):void {
-    const newIndex = this.state.startIndex - numPerPage;
-    this.setState({ startIndex: newIndex < 0 ? 0 : newIndex });
+    this.props.decreasePaginator(numPerPage);
   }
   renderNoEmployees():JSX.Element {
     return <p>No employees found</p>;
   }
   generatePageOfEmployees():Employee[] {
-    const { allEmployees } = this.props;
-    const { startIndex } = this.state;
-    return allEmployees.slice(startIndex, startIndex + _NUM_PER_PAGE);
+    const { allEmployees, paginatorStartIndex } = this.props;
+    return allEmployees.slice(paginatorStartIndex, paginatorStartIndex + _NUM_PER_PAGE);
   }
   render() {
     if (this.props.allEmployees.length === 0) return this.renderNoEmployees();
@@ -44,7 +42,7 @@ class HomeComponent extends React.Component<HomeProps> {
         list={this.props.allEmployees}
         decreaseFunc={(numPerPage:number) => this.decreaseIndex(numPerPage)}
         increaseFunc={(numPerPage:number) => this.increaseIndex(numPerPage)}
-        startIndex={this.state.startIndex}
+        startIndex={this.props.paginatorStartIndex}
         numPerPage={_NUM_PER_PAGE}
       />
       <CardsContainer>
@@ -60,14 +58,21 @@ class HomeComponent extends React.Component<HomeProps> {
 }
 
 
-const mapStateToProps = ({ allEmployees, currentEmployee, isModalOpen }:StoreState) => ({
+const mapStateToProps = ({ allEmployees, currentEmployee, isModalOpen, paginatorStartIndex }:StoreState) => ({
   allEmployees,
   currentEmployee,
   isModalOpen,
+  paginatorStartIndex,
 })
 const mapActionsToProps = (dispatch:Dispatch) => ({
   setCurrentEmployee(employee:Employee) {
     return dispatch(setCurrentEmployee(employee));
+  },
+  increasePaginator(numPerPage:number) {
+    return dispatch(increasePaginator(numPerPage));
+  },
+  decreasePaginator(numPerPage:number) {
+    return dispatch(decreasePaginator(numPerPage));
   },
 });
 
