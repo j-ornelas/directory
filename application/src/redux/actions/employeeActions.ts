@@ -12,7 +12,7 @@ export interface Employee {
     medium:string;
   }
 }
-//set all employees
+// Set all employees
 export interface SetAllEmployeesInterFace {
   type:ActionTypes.SET_ALL_EMPLOYEES;
   payload: Employee[];
@@ -21,7 +21,7 @@ export const setAllEmployees = (employees:Employee[]) => ({
   type: ActionTypes.SET_ALL_EMPLOYEES,
   payload: employees
 })
-//set focused employee
+// Set focused employee
 export interface SetEmployeeInterface {
   type:ActionTypes.SET_CURRENT_EMPLOYEE;
   payload: Employee;
@@ -29,4 +29,11 @@ export interface SetEmployeeInterface {
 export const setCurrentEmployee = (info:Employee) => ({
   type: ActionTypes.SET_CURRENT_EMPLOYEE,
   payload: info
+})
+// toggle EmployeeModal
+export interface ToggleModalInterface {
+  type:ActionTypes.TOGGLE_MODAL;
+}
+export const toggleModal = () => ({
+  type: ActionTypes.TOGGLE_MODAL,
 })

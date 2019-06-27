@@ -26,3 +26,12 @@ export const currentEmployee = (state:Employee = DEFAULT_EMPLOYEE_STATE, action:
       return state;
   }
 }
+
+export const isModalOpen = (state:boolean = false, action:Action) => {
+  switch(action.type) {
+    case ActionTypes.TOGGLE_MODAL:
+      return !state;
+    default:
+      return state;
+  }
+}
