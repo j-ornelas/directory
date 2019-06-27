@@ -1,0 +1,28 @@
+version: "3"
+services:
+  directory-server:
+    container_name: directory-server
+    restart: always
+    build: .
+    volumes:
+      - .:/usr/directory-server
+      - /usr/directory-server/node_modules
+    ports:
+      - 3033:3033
+    networks:
+      - directory-server
+    links:
+      - directory-mongo
+  directory-mongo:
+    container_name: directory-mongo
+    image: mongo
+    volumes:
+      - directory_db:/data/db
+    ports:
+      - 27017:27017
+    networks:
+      - directory-server
+volumes:
+  ? directory_db
+networks:
+  ? directory-server

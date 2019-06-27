@@ -6,14 +6,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express_1 = __importDefault(require("express"));
 var routes_1 = require("./routes");
 var body_parser_1 = __importDefault(require("body-parser"));
-/* ******** CONNECT DB ******** */
-var database_1 = require("./database/database");
-database_1.db.on('error', console.error.bind(console, 'connection error:'));
-database_1.db.once('open', function () { return console.log('db is connected....'); });
-/* ******** SERVER CONFIG ******** */
 var PORT = 3033;
 var app = express_1.default();
 app.use(body_parser_1.default.urlencoded({ extended: true }));
 app.use(routes_1.router);
-/* ******** SERVER INIT ******** */
-app.listen(PORT, function () { return console.log("listening on port " + PORT + "!"); });
+app.get('/', function (req, res) {
+    res.send('server is live');
+});
+app.listen(PORT, function () {
+    console.log("listening on port " + PORT + "!");
+});
