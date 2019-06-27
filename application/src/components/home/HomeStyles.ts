@@ -8,3 +8,12 @@ export const CardsContainer = styled.div`
   width: 100%;
   minHeight: 100%;
 `;
+
+export const HomeContainer = styled.div`
+  border: 0.1px solid white;
+`;
+
+export const TitleText = styled.p`
+  font-size: 22px;
+  text-align: center;
+`

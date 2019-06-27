@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { StoreState } from '../../redux/reducers';
 import { setCurrentEmployee, Employee } from '../../redux/actions';
 import { EmployeeCard, EmployeeModal, Paginator } from '../'
-import { CardsContainer } from './HomeStyles';
+import { CardsContainer, TitleText, HomeContainer } from './HomeStyles';
 
 const _NUM_PER_PAGE = 4; // not using process.env for demo simplicity
 interface HomeProps {
@@ -35,10 +35,18 @@ class HomeComponent extends React.Component<HomeProps> {
   render() {
     if (this.props.allEmployees.length === 0) return this.renderNoEmployees();
     return (
-      <>
+      <HomeContainer>
       {this.props.isModalOpen && (
         <EmployeeModal currentEmployee={this.props.currentEmployee} />
       )}
+      <TitleText>Our Team:</TitleText>
+      <Paginator
+        list={this.props.allEmployees}
+        decreaseFunc={(numPerPage:number) => this.decreaseIndex(numPerPage)}
+        increaseFunc={(numPerPage:number) => this.increaseIndex(numPerPage)}
+        startIndex={this.state.startIndex}
+        numPerPage={_NUM_PER_PAGE}
+      />
       <CardsContainer>
         {this.generatePageOfEmployees().map((employee:Employee) => {
           return (
@@ -46,14 +54,7 @@ class HomeComponent extends React.Component<HomeProps> {
           )
         })}
     </CardsContainer>
-    <Paginator
-      list={this.props.allEmployees}
-      decreaseFunc={(numPerPage:number) => this.decreaseIndex(numPerPage)}
-      increaseFunc={(numPerPage:number) => this.increaseIndex(numPerPage)}
-      startIndex={this.state.startIndex}
-      numPerPage={_NUM_PER_PAGE}
-    />
-    </>
+    </HomeContainer>
     )
   }
 }

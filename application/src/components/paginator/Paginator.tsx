@@ -1,6 +1,6 @@
 import React from 'react';
 import { Employee } from '../../redux/actions';
-import { PaginatorConatiner } from './paginatorStyles';
+import { PaginatorConatiner, PaginatorButton, PaginatorPlaceholder } from './paginatorStyles';
 
 interface HomeProps {
   list:Employee[];
@@ -13,16 +13,16 @@ export class Paginator extends React.Component<HomeProps> {
   renderMoveLeft():JSX.Element {
     const isAtListBeginning = (this.props.startIndex === 0);
     if (isAtListBeginning) {
-      return <div>placeholder</div>
+      return <PaginatorPlaceholder />
     }
-    return <button onClick={() => this.props.decreaseFunc(this.props.numPerPage)}>left</button>
+    return <PaginatorButton onClick={() => this.props.decreaseFunc(this.props.numPerPage)}>←</PaginatorButton>
   }
   renderMoveRight():JSX.Element {
     const isAtListEnd = (this.props.startIndex + this.props.numPerPage >= this.props.list.length);
     if (isAtListEnd) {
-      return <div>placeholder</div>
+      return <PaginatorPlaceholder />
     }
-    return <button onClick={() => this.props.increaseFunc(this.props.numPerPage)}>right</button>
+    return <PaginatorButton onClick={() => this.props.increaseFunc(this.props.numPerPage)}>→</PaginatorButton>
   }
   render() {
     // if we've deleted the last employee on a page, go left.
