@@ -14,7 +14,9 @@ interface HomeProps {
 }
 class HomeComponent extends React.Component<HomeProps> {
   render() {
-    return (
+    return this.props.allEmployees.length === 0 ? (
+      <p>no employees found</p>
+    ) : (
       <CardsContainer>
         {this.props.isModalOpen && (
           <EmployeeModal currentEmployee={this.props.currentEmployee} />
