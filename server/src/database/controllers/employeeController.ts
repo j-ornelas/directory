@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import { EmployeeModel, seedDB } from '../models/EmployeeModel';
 const router = Router();
-router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 router.get('/get', async (req:Request, res:Response) => {
   try {
@@ -16,7 +16,7 @@ router.get('/get', async (req:Request, res:Response) => {
 interface RemoveRequestInterface extends Request {
   body: { _id: string|undefined };
 }
-router.post('/remove', async (req:RemoveRequestInterface, res:Response) => {
+router.delete('/remove', async (req:RemoveRequestInterface, res:Response) => {
   // In a real application, this route would be hidden
   // behind some authorization middleware.
   try {

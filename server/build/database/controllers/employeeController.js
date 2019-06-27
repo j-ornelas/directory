@@ -43,7 +43,7 @@ var express_1 = require("express");
 var body_parser_1 = __importDefault(require("body-parser"));
 var EmployeeModel_1 = require("../models/EmployeeModel");
 var router = express_1.Router();
-router.use(body_parser_1.default.urlencoded({ extended: true }));
+router.use(body_parser_1.default.json());
 router.get('/get', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var employees, err_1;
     return __generator(this, function (_a) {
@@ -63,7 +63,7 @@ router.get('/get', function (req, res) { return __awaiter(_this, void 0, void 0,
         }
     });
 }); });
-router.post('/remove', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+router.delete('/remove', function (req, res) { return __awaiter(_this, void 0, void 0, function () {
     var _id, deleteAttempt, employees, err_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
