@@ -13,10 +13,12 @@ interface HomeProps {
   isModalOpen:boolean;
 }
 class HomeComponent extends React.Component<HomeProps> {
+  renderNoEmployees():JSX.Element {
+    return <p>No employees found</p>;
+  }
   render() {
-    return this.props.allEmployees.length === 0 ? (
-      <p>no employees found</p>
-    ) : (
+    if (this.props.allEmployees.length === 0) return this.renderNoEmployees();
+    return (
       <CardsContainer>
         {this.props.isModalOpen && (
           <EmployeeModal currentEmployee={this.props.currentEmployee} />
