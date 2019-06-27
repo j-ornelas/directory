@@ -6,6 +6,10 @@ export interface Employee {
   name: {
     first:string;
     last:string;
+  };
+  picture: {
+    large:string;
+    medium:string;
   }
 }
 //set all employees
