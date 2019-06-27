@@ -22,7 +22,7 @@ export interface SetEmployeeInterface {
   type:ActionTypes.SET_CURRENT_EMPLOYEE;
   payload: Employee;
 }
-export const setCurrrentEmployee = (info:Employee) => ({
+export const setCurrentEmployee = (info:Employee) => ({
   type: ActionTypes.SET_CURRENT_EMPLOYEE,
   payload: info
 })

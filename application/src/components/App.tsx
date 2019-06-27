@@ -18,6 +18,10 @@ class AppComponent extends React.Component<AppProps> {
         this.props.setAllEmployees(info.employees);
         this.setState({ isLoading: false });
       })
+      .catch(() => {
+        this.props.setAllEmployees([]);
+        this.setState({ isLoading: false });
+      })
   }
 
   render() {
