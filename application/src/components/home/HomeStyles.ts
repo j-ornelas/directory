@@ -6,5 +6,5 @@ export const CardsContainer = styled.div`
   flex-wrap: wrap;
   margin: auto;
   width: 100%;
-  height: 100%;
+  minHeight: 100%;
 `;

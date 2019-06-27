@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { setCurrentEmployee, Employee } from '../../redux/actions';
+import { setCurrentEmployee, toggleModal, Employee } from '../../redux/actions';
 import {
   EmployeeModalContainer,
   ExtendedCard,
@@ -13,13 +13,14 @@ import { formatName } from '../../utils';
 interface CurrentEmployeeProps {
   currentEmployee:Employee;
   setCurrentEmployee:Function;
+  toggleModal:Function;
 }
 class EmployeeModalComponent extends React.Component<CurrentEmployeeProps> {
   render() {
-    const { currentEmployee } = this.props;
+    const { currentEmployee, toggleModal } = this.props;
     const { first, last } = currentEmployee.name;
     return (
-      <EmployeeModalContainer onClick={() => console.log('clicked')}>
+      <EmployeeModalContainer onClick={() => toggleModal()}>
         <ExtendedCard>
           <LargerImage src={currentEmployee.picture.large} />
           <InfoText>{`${formatName(first)} ${formatName(last)}`}</InfoText>
@@ -36,6 +37,9 @@ const mapActionsToProps = (dispatch:Dispatch) => ({
   setCurrentEmployee(employee:Employee) {
     return dispatch(setCurrentEmployee(employee));
   },
+  toggleModal() {
+    return dispatch(toggleModal());
+  }
 });
 
 export const EmployeeModal = connect(null, mapActionsToProps)(EmployeeModalComponent);

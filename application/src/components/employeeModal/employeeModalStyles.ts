@@ -7,11 +7,13 @@ export const EmployeeModalContainer = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  overflow: visible;
   background-color: rgba(0,0,0,0.75);
 `;
 
 export const ExtendedCard = styled.div`
-  maxHeight: 300px;
+  position: relative;
+  height: auto;
   maxWidth: 300px;
   background-color: white;
   padding: 30px;

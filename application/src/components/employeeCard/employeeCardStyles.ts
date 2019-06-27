@@ -17,9 +17,9 @@ export const SmallImage = styled.img`
   height: 150px;
   width: 150px;
   border-radius: 50%;
-  transition: all 500ms;
+  transition: all 300ms;
   ${CardContainer}:hover & {
     cursor: pointer;
-    opacity: 0.5;
+      box-shadow: 0 0 20px #000
   }
 `;
