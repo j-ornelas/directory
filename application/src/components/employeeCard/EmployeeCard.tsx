@@ -15,7 +15,7 @@ interface EmployeeProps {
   toggleModal:Function;
 }
 class EmployeeComponent extends React.Component<EmployeeProps> {
-  handleClick() {
+  handleClick():void {
     this.props.toggleModal();
     this.props.setCurrentEmployee(this.props.employee);
   }

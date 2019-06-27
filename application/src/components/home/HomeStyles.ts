@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { colors, fonts } from '../../brand';
 
 export const CardsContainer = styled.div`
   display: flex;
@@ -10,10 +11,11 @@ export const CardsContainer = styled.div`
 `;
 
 export const HomeContainer = styled.div`
-  border: 0.1px solid white;
+  border: 0.1px solid ${colors.WHITE};
 `;
 
 export const TitleText = styled.p`
+  font-family: ${fonts.SANS_SERIF};
   font-size: 22px;
   text-align: center;
 `
