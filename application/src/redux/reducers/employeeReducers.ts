@@ -14,7 +14,9 @@ export const allEmployees = (state:Employee[] = [], action:Action) => {
 const DEFAULT_EMPLOYEE_STATE = {
   email: '',
   cell: '',
-  name: { first:'', last: ''}
+  name: { first:'', last: ''},
+  picture: { medium: '', large: ''},
+
 }
 export const currentEmployee = (state:Employee = DEFAULT_EMPLOYEE_STATE, action:Action) => {
   switch(action.type) {
