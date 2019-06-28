@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Home } from './';
 import { setAllEmployees } from '../redux/actions';
+import { Loading } from '../components/common/Spinner';
 
 interface AppProps {
   setAllEmployees:Function;
@@ -25,7 +26,7 @@ class AppComponent extends React.Component<AppProps> {
   }
 
   render() {
-    return this.state.isLoading ? <p>LOADING....</p> : (
+    return this.state.isLoading ? <Loading size="large"/> : (
       <Home />
     )
   }
