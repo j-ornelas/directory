@@ -21,3 +21,5 @@ The web application will be live at http://localhost:3000
 #### Notes
 
 If you delete all the employees and want to re-seed the database, go to: http://localhost:3033/employees/seed
+
+This application is build with React / Typescript on the front end, and features a Docker-ized Node.js/MongoDB backend. The homepage of the app features a paginated list of employees, clicking on an employee give you the ability see more information and to delete the employee.
