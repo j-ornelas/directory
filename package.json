@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:app": "cd application && npm start && cd ..",
-    "start:server": "cd server && npm start && cd ..",
+    "start:server": "cd server && docker-compose up",
     "start": "npm run start:app | npm run start:server",
     "install:app": "cd application && npm install && cd ..",
     "install:server": "cd server && npm install && cd ..",

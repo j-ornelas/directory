@@ -6,9 +6,15 @@ This is an employee directory app. It consists of a Node.js backend and a React/
 
 ## Running the project
 
-Make sure ports 3000 & 3033 are not being used.
+#### Requirements
+ - Make sure ports 3000 & 3033 are available
+ - Node & Docker
 
 `$ npm run init`
 `$ npm start`
 
 The web application will be live at http://localhost:3000
+
+#### Notes
+
+If you delete all the employees and want to re-seed the database, go to: http://localhost:3033/employees/seed

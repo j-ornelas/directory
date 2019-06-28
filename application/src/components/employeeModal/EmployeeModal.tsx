@@ -11,8 +11,8 @@ import {
   DeleteButton,
   DeleteButtonContainer,
 } from './employeeModalStyles';
-import { formatName, createHeaders } from '../../utils';
-import { EmployeeDeleteRequest, EmployeeRequest } from '../../classes/API';
+import { formatName } from '../../utils';
+import { EmployeeDeleteRequest } from '../../classes/API';
 
 interface CurrentEmployeeProps {
   currentEmployee:Employee;
