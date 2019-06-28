@@ -12,12 +12,8 @@ import {
   DeleteButtonContainer,
 } from './employeeModalStyles';
 import { formatName, createHeaders } from '../../utils';
+import { EmployeeDeleteRequest, EmployeeRequest } from '../../classes/API';
 
-interface RemoveEmployeeResponse {
-  success?:boolean;
-  employees:Employee[]
-  err?:string;
-}
 interface CurrentEmployeeProps {
   currentEmployee:Employee;
   toggleModal:Function;
@@ -32,33 +28,21 @@ class EmployeeModalComponent extends React.Component<CurrentEmployeeProps> {
     this.setState({ isLoading: bool})
   }
 
-  handleDelete(e:MouseEvent):void {
+  async handleDelete(e:MouseEvent) {
     e.stopPropagation();
     this.setLoading(true);
-    fetch('/employees/remove', {
-      method: 'DELETE',
-      headers: createHeaders(),
-      body: JSON.stringify({
-        _id: this.props.currentEmployee._id
-      })
-    })
-      .then((res:Response) => res.json())
-      .then((serverResponse:RemoveEmployeeResponse) => {
-        if (serverResponse.err) alert(serverResponse.err);
-        const updatedEmployees = serverResponse.employees;
-        if (serverResponse.success && updatedEmployees) {
-          this.setLoading(false);
-          this.props.setAllEmployees(updatedEmployees);
-          this.props.toggleModal();
-        } else {
-          this.setLoading(false);
-        }
-      })
-      .catch(() => {
-        alert('There was an error processing your requst.')
-        this.setLoading(false);
-      });
+    const deleteRequest = new EmployeeDeleteRequest('/employees/remove',
+      { _id: this.props.currentEmployee._id }
+    );
+    await deleteRequest.delete();
+    if (deleteRequest.err) alert(deleteRequest.err)
+    if (deleteRequest.success) {
+      this.props.setAllEmployees(deleteRequest.employees);
+      this.setState({ isLoading: false });
+      this.props.toggleModal();
+    }
   }
+
   render() {
     const { currentEmployee, toggleModal } = this.props;
     const { first, last } = currentEmployee.name;
