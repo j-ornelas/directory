@@ -1,6 +1,7 @@
 import React, { MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { Loading } from '../common/Spinner';
 import { setAllEmployees, toggleModal, Employee } from '../../redux/actions';
 import {
   EmployeeModalContainer,
@@ -70,7 +71,7 @@ class EmployeeModalComponent extends React.Component<CurrentEmployeeProps> {
           <InfoText>{currentEmployee.cell}</InfoText>
           <DeleteButtonContainer>
             {this.state.isLoading ? (
-              <div>hi</div>
+              <Loading />
             ) : (
               <DeleteButton onClick={(e) => this.handleDelete(e)}>
                 Delete
